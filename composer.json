@@ -8,5 +8,7 @@
             "email": "nicolaiostby@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "onesky/api-library-php5": "^1.0"
+    }
 }

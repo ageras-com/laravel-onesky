@@ -1,0 +1,54 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "7745bf9f2d84eefa3b672b1599ae3b35",
+    "content-hash": "0a377659a93cc23d58b1992b5f1e7e1b",
+    "packages": [
+        {
+            "name": "onesky/api-library-php5",
+            "version": "v1.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/onesky/api-library-php5.git",
+                "reference": "0b2907a4c62def5fc7590af467d8ec7574494b5a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/onesky/api-library-php5/zipball/0b2907a4c62def5fc7590af467d8ec7574494b5a",
+                "reference": "0b2907a4c62def5fc7590af467d8ec7574494b5a",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.1.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.3.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Onesky\\Api\\": "src/Onesky/Api/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "PHP interface for OneSky Platform API",
+            "homepage": "https://github.com/onesky/api-library-php5",
+            "time": "2015-06-09 02:00:31"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}
