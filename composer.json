@@ -13,5 +13,10 @@
         "illuminate/support": "^5.2",
         "illuminate/console": "^5.2",
         "vlucas/phpdotenv": "^2.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Ageras\\LaravelOneSky\\": "src/"
+        }
     }
 }
