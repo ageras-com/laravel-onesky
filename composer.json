@@ -9,6 +9,8 @@
         }
     ],
     "require": {
-        "onesky/api-library-php5": "^1.0"
+        "onesky/api-library-php5": "^1.0",
+        "illuminate/support": "^5.2",
+        "illuminate/console": "^5.2"
     }
 }
