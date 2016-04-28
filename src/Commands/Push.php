@@ -49,8 +49,8 @@ class Push extends Command
         $config = $this->config();
         $project = $this->option('project');
 
-        if(!$project && isset($config['project'])) {
-            $project = $config['project'];
+        if(!$project && isset($config['default_project_id'])) {
+            $project = $config['default_project_id'];
         }
 
         if($project && (string)(int)$project === (string)$project) {
