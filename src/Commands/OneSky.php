@@ -6,11 +6,11 @@ use Illuminate\Console\Command;
 
 class OneSky extends Command
 {
-    protected $name = 'onesky';
+    protected $signature = 'onesky';
 
     protected $description = 'Get information about OneSky';
 
-    public function fire()
+    public function handle()
     {
     }
 }

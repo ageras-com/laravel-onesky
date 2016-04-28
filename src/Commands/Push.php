@@ -6,11 +6,11 @@ use Illuminate\Console\Command;
 
 class Push extends Command
 {
-    protected $name = 'onesky:push';
+    protected $signature = 'onesky:push';
 
     protected $description = 'Push the language files to OneSky';
 
-    public function fire()
+    public function handle()
     {
     }
 }

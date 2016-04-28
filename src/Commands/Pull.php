@@ -6,11 +6,11 @@ use Illuminate\Console\Command;
 
 class Pull extends Command
 {
-    protected $name = 'onesky:pull';
+    protected $signature = 'onesky:pull';
 
     protected $description = 'Pull the language files from OneSky';
 
-    public function fire()
+    public function handle()
     {
     }
 }
