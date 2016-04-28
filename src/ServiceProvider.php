@@ -18,6 +18,11 @@ class ServiceProvider extends IlluminateServiceProvider
         $this->registerClient();
     }
 
+    public function boot()
+    {
+        $this->loadConfiguration();
+    }
+
     public function registerCommands()
     {
         $this->app->bindIf('command.onesky', function () {
@@ -44,5 +49,21 @@ class ServiceProvider extends IlluminateServiceProvider
                 ->setApiKey(getenv('ONESKY_API_KEY'))
                 ->setSecret(getenv('ONESKY_SECRET'));
         });
+    }
+
+    /**
+     * Load the configuration files and allow them to be published.
+     *
+     * @return void
+     */
+    protected function loadConfiguration()
+    {
+        $configPath = __DIR__ . '/../config/onesky.php';
+
+        $this->publishes([
+            $configPath => config_path('onesky.php'),
+        ], 'config');
+
+        $this->mergeConfigFrom($configPath, 'onesky');
     }
 }
