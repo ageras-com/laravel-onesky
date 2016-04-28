@@ -3,6 +3,7 @@
 namespace Ageras\LaravelOneSky;
 
 use Illuminate\Support\ServiceProvider as IlluminateServiceProvider;
+use Onesky\Api\Client;
 
 class ServiceProvider extends IlluminateServiceProvider
 {
@@ -14,6 +15,7 @@ class ServiceProvider extends IlluminateServiceProvider
     public function register()
     {
         $this->registerCommands();
+        $this->registerClient();
     }
 
     public function registerCommands()
@@ -26,6 +28,21 @@ class ServiceProvider extends IlluminateServiceProvider
         });
         $this->app->bindIf('command.onesky.push', function () {
             return new Commands\Push();
+        });
+
+        $this->commands(
+            'command.onesky',
+            'command.onesky.pull',
+            'command.onesky.push'
+        );
+    }
+
+    public function registerClient()
+    {
+        $this->app->bindIf('onesky', function() {
+            return (new Client())
+                ->setApiKey(getenv('ONESKY_API_KEY'))
+                ->setSecret(getenv('ONESKY_SECRET'));
         });
     }
 }
