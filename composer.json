@@ -16,7 +16,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Ageras\\LaravelOneSky\\": "src/"
+            "Ageras\\LaravelOneSky\\": "src/",
+            "Ageras\\LaravelOneSky\\Tests\\": "tests/"
         }
     },
     "require-dev": {
