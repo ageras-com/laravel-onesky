@@ -41,7 +41,7 @@ class Push extends Command
 
     public function config()
     {
-        $this->laravel->config['onesky'];
+        return $this->laravel->config['onesky'];
     }
 
     public function project()
