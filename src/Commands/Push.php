@@ -4,6 +4,8 @@ namespace Ageras\LaravelOneSky\Commands;
 
 use Ageras\LaravelOneSky\Exceptions\NumberExpected;
 use Illuminate\Console\Command;
+use Onesky\Api\Client;
+use Onesky\Api\FileFormat;
 
 class Push extends Command
 {
@@ -13,7 +15,27 @@ class Push extends Command
 
     public function handle()
     {
-        $this->uploadFiles();
+        $locale = $this->baseLocale();
+        $translationsPath = $this->translationsPath() . DIRECTORY_SEPARATOR . $locale;
+
+        $files = $this->scanDir($translationsPath);
+
+        $files = array_map(function($fileName) use (&$locale, &$translationsPath) {
+            return $translationsPath . DIRECTORY_SEPARATOR . $fileName;
+        }, $files);
+
+        $response = $this->uploadFiles(
+            $this->client(),
+            $this->project(),
+            $locale,
+            $files
+        );
+
+    }
+
+    public function baseLocale()
+    {
+        return $this->config()['onesky']['base_locale'];
     }
 
     public function languages()
@@ -57,29 +79,48 @@ class Push extends Command
             return $project;
         }
 
-        throw new NumberExpected();
+        throw new NumberExpected('--project');
     }
 
-    public function uploadFiles()
+    /**
+     * @param \OneSky\Api\Client $client
+     * @param $project
+     * @param $locale
+     * @param $filePath
+     * @param array $files
+     */
+    public function uploadFiles($client, $project, $locale, $filePath, array $files)
     {
-        $client = $this->client();
-        $project = $this->project();
+        $data = $this->prepareUploadData($project, $locale, $filePath, $files);
 
-        foreach($this->languages() as $language) {
-            //
+        $client->files('upload', $data);
+    }
+
+    public function prepareUploadData($project, $locale, $filePath, array $files)
+    {
+        $data = [];
+        foreach($files as $file) {
+            $data[] = [
+                'project_id' => $project,
+                'file' => $filePath . DIRECTORY_SEPARATOR . $locale . DIRECTORY_SEPARATOR . $file,
+                'file_format' => FileFormat::PHP,
+                'locale' => $locale,
+            ];
         }
+
+        return $data;
     }
 
     public function scanDir($dir, $directoriesOnly = false)
     {
-        $fileNames = array_diff(scandir($dir), ['..', '.']);
+        $fileNames = array_values(array_diff(scandir($dir), ['..', '.']));
 
         if(!$directoriesOnly) {
             return $fileNames;
         }
 
-        return array_filter($fileNames, function($fileName) use (&$translationsPath) {
-            return is_dir($translationsPath . DIRECTORY_SEPARATOR . $fileName);
+        return array_filter($fileNames, function($fileName) use (&$dir) {
+            return is_dir($dir . DIRECTORY_SEPARATOR . $fileName);
         });
     }
 
