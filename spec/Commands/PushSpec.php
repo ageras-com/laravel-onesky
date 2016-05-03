@@ -16,13 +16,13 @@ class PushSpec extends ObjectBehavior
     function it_prepares_the_upload_data()
     {
         $this->prepareUploadData(1337, 'en', [
-            'resources/lang/mail.php',
-            'resources/lang/actions.php',
-            'resources/lang/validation.php',
+            '/path/to/resources/lang/en/mail.php',
+            '/path/to/resources/lang/en/actions.php',
+            '/path/to/resources/lang/en/validation.php',
         ])->shouldReturn([
-            ['project_id' => 1337, 'file' => 'resources/lang/en/mail.php', 'file_format' => 'PHP', 'locale' => 'en'],
-            ['project_id' => 1337, 'file' => 'resources/lang/en/actions.php', 'file_format' => 'PHP', 'locale' => 'en'],
-            ['project_id' => 1337, 'file' => 'resources/lang/en/validation.php', 'file_format' => 'PHP', 'locale' => 'en'],
+            ['project_id' => 1337, 'file' => '/path/to/resources/lang/en/mail.php', 'file_format' => 'PHP_SHORT_ARRAY', 'locale' => 'en'],
+            ['project_id' => 1337, 'file' => '/path/to/resources/lang/en/actions.php', 'file_format' => 'PHP_SHORT_ARRAY', 'locale' => 'en'],
+            ['project_id' => 1337, 'file' => '/path/to/resources/lang/en/validation.php', 'file_format' => 'PHP_SHORT_ARRAY', 'locale' => 'en'],
         ]);
     }
 
