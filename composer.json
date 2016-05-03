@@ -21,8 +21,8 @@
         }
     },
     "require-dev": {
+        "phpspec/phpspec": "^2.5",
         "phpunit/phpunit": "^5.3",
-        "orchestra/testbench": "^3.2",
-        "phpspec/phpspec": "^2.5"
+        "orchestra/testbench": "^3.1"
     }
 }

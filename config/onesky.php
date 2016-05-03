@@ -1,10 +1,11 @@
 <?php
 
 return [
-    'default_project_id' => null,
     'base_locale'        => 'en',
-    'translations_path' => 'resources/lang',
+    'file_format'        => 'PHP_SHORT_ARRAY',
+    'translations_path'  => resource_path('lang'),
+    'default_project_id' => null,
 
     'api_key' => getenv('ONESKY_API_KEY'),
-    'secret' => getenv('ONESKY_SECRET'),
+    'secret'  => getenv('ONESKY_SECRET'),
 ];

@@ -46,8 +46,8 @@ class ServiceProvider extends IlluminateServiceProvider
     {
         $this->app->bindIf('onesky', function() {
             return (new Client())
-                ->setApiKey(getenv('ONESKY_API_KEY'))
-                ->setSecret(getenv('ONESKY_SECRET'));
+                ->setApiKey($this->app['config']['onesky.api_key'])
+                ->setSecret($this->app['config']['onesky.secret']);
         });
     }
 

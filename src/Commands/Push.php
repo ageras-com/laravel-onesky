@@ -3,9 +3,8 @@
 namespace Ageras\LaravelOneSky\Commands;
 
 use Ageras\LaravelOneSky\Exceptions\NumberExpected;
+use Ageras\LaravelOneSky\Exceptions\UnexpectedErrorWhileUploading;
 use Illuminate\Console\Command;
-use Onesky\Api\Client;
-use Onesky\Api\FileFormat;
 
 class Push extends Command
 {
@@ -24,18 +23,19 @@ class Push extends Command
             return $translationsPath . DIRECTORY_SEPARATOR . $fileName;
         }, $files);
 
-        $response = $this->uploadFiles(
+        $this->uploadFiles(
             $this->client(),
             $this->project(),
             $locale,
             $files
         );
 
+        $this->info('Files were uploaded successfully!');
     }
 
     public function baseLocale()
     {
-        return $this->config()['onesky']['base_locale'];
+        return $this->config()['base_locale'];
     }
 
     public function languages()
@@ -52,10 +52,9 @@ class Push extends Command
     public function translationsPath()
     {
         $config = $this->config();
-        $basePath = $this->laravel->basePath();
 
         if(isset($config['translations_path'])) {
-            return $basePath . DIRECTORY_SEPARATOR . $config['translations_path'];
+            return $config['translations_path'];
         }
 
         return resource_path('lang');
@@ -86,24 +85,38 @@ class Push extends Command
      * @param \OneSky\Api\Client $client
      * @param $project
      * @param $locale
-     * @param $filePath
      * @param array $files
      */
-    public function uploadFiles($client, $project, $locale, $filePath, array $files)
+    public function uploadFiles($client, $project, $locale, array $files)
     {
-        $data = $this->prepareUploadData($project, $locale, $filePath, $files);
+        $data = $this->prepareUploadData($project, $locale, $files);
 
-        $client->files('upload', $data);
+        foreach($data as $d) {
+            $client->files('upload', $d);
+        }
     }
 
-    public function prepareUploadData($project, $locale, $filePath, array $files)
+    public function uploadFile($client, $data)
+    {
+        $jsonResponse = $client->files('upload', $data);
+        $jsonData = json_decode($jsonResponse, true);
+        $responseStatus = $jsonData['meta']['status'];
+
+        if($responseStatus !== 201) {
+            throw new UnexpectedErrorWhileUploading(
+                'Upload response status: ' . $responseStatus
+            );
+        }
+    }
+
+    public function prepareUploadData($project, $locale, array $files)
     {
         $data = [];
         foreach($files as $file) {
             $data[] = [
                 'project_id' => $project,
-                'file' => $filePath . DIRECTORY_SEPARATOR . $locale . DIRECTORY_SEPARATOR . $file,
-                'file_format' => FileFormat::PHP,
+                'file' => $file,
+                'file_format' => 'PHP_SHORT_ARRAY',
                 'locale' => $locale,
             ];
         }
