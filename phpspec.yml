@@ -1,0 +1,5 @@
+suites:
+    main:
+        namespace: Ageras\LaravelOneSky
+        psr4_prefix: Ageras\LaravelOneSky
+        src_path: src

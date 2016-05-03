@@ -8,5 +8,21 @@
             "email": "nicolaiostby@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "onesky/api-library-php5": "^1.0",
+        "illuminate/support": "^5.2",
+        "illuminate/console": "^5.2",
+        "vlucas/phpdotenv": "^2.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Ageras\\LaravelOneSky\\": "src/",
+            "Ageras\\LaravelOneSky\\Tests\\": "tests/"
+        }
+    },
+    "require-dev": {
+        "phpspec/phpspec": "^2.5",
+        "phpunit/phpunit": "^5.3",
+        "orchestra/testbench": "^3.1"
+    }
 }
