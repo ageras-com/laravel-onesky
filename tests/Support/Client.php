@@ -19,9 +19,20 @@ class Client
     public function files()
     {
         $this->lastCall = array_merge(['files'], func_get_args());
-        return
-<<<EOT
+        return <<<EOT
 {"meta":{"status":201}}
+EOT;
+    }
+
+    public function translations()
+    {
+        $this->lastCall = array_merge(['translations'], func_get_args());
+        return <<<EOT
+<?php
+
+return [
+    'welcome' => 'Velkommen',
+];
 EOT;
     }
 
