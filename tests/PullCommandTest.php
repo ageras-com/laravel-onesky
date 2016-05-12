@@ -88,10 +88,10 @@ class PullCommandTest extends TestCase
         $this->assertEquals([], require($this->testFilePath));
         $this->assertEquals(<<<EOT
 Invalid response:
-  File:      test.php
-  Locale:    da
-  Response:              {"meta":{"status":400,"message":"Invalid project id"}}
-Something failed during the translation download. Please check the output.
+  File:       test.php
+  Locale:     da
+  Response:   {"meta":{"status":400,"message":"Invalid project id"}}
+Something unexpected happened during the translation download. Please check the console output.
 
 EOT
             , $output->fetch());

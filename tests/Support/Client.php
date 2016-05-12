@@ -30,7 +30,7 @@ EOT;
 
         if($this->lastCall[2]['project_id'] == '1338') {
             return <<<EOT
-            {"meta":{"status":400,"message":"Invalid project id"}}
+{"meta":{"status":400,"message":"Invalid project id"}}
 EOT;
         }
 

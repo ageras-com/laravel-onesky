@@ -63,9 +63,9 @@ class Pull extends BaseCommand
     public function invalidResponse($locale, $file, $response)
     {
         $this->error("Invalid response:");
-        $this->error("  File:      {$file}");
-        $this->error("  Locale:    {$locale}");
-        $this->error("  Response:  {$response}");
+        $this->error("  File:       {$file}");
+        $this->error("  Locale:     {$locale}");
+        $this->error("  Response:   {$response}");
     }
 
     public function prepareTranslationData($project, $locale, $file)
