@@ -27,6 +27,13 @@ EOT;
     public function translations()
     {
         $this->lastCall = array_merge(['translations'], func_get_args());
+
+        if($this->lastCall[2]['project_id'] == '1338') {
+            return <<<EOT
+{"meta":{"status":400,"message":"Invalid project id"}}
+EOT;
+        }
+
         return <<<EOT
 <?php
 

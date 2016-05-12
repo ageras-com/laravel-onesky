@@ -65,4 +65,35 @@ class PullCommandTest extends TestCase
         $this->assertEquals(['welcome' => 'Velkommen'], require($this->testFilePath));
         $this->assertEquals("Translations were downloaded successfully!\n", $output->fetch());
     }
+
+    public function test_that_error_is_shown_in_the_console_when_response_from_client_is_invalid()
+    {
+        $pull = new Pull();
+        $pull->setLaravel($this->app);
+
+        $client = $this->app->make('onesky');
+
+        $output = new BufferedOutput();
+
+        $this->assertEquals([], require($this->testFilePath));
+
+        $pull->run(
+            new ArgvInput([
+                'onesky:pull',
+                '--project=1338',
+            ]),
+            $output
+        );
+
+        $this->assertEquals([], require($this->testFilePath));
+        $this->assertEquals(<<<EOT
+Invalid response:
+  File:       test.php
+  Locale:     da
+  Response:   {"meta":{"status":400,"message":"Invalid project id"}}
+Something unexpected happened during the translation download. Please check the console output.
+
+EOT
+            , $output->fetch());
+    }
 }
