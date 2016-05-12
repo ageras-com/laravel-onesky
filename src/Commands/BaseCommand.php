@@ -7,6 +7,11 @@ use Illuminate\Console\Command;
 
 class BaseCommand extends Command
 {
+    protected $result = 0;
+
+    const SUCCESS = 0;
+    const UNKNOWN_ERROR = 1;
+
     public function baseLocale()
     {
         return $this->config()['base_locale'];

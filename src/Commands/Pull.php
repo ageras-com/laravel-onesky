@@ -25,7 +25,13 @@ class Pull extends BaseCommand
             $files
         );
 
-        $this->info('Translations were downloaded successfully!');
+        switch($this->result) {
+            case static::SUCCESS:
+                $this->info('Translations were downloaded successfully!');
+                break;
+            case static::UNKNOWN_ERROR:
+                $this->error('Something unexpected happened during the translation download. Please check the console output.');
+        }
     }
 
     public function downloadTranslations($client, $project, $locales, $files)
@@ -43,9 +49,23 @@ class Pull extends BaseCommand
 
         $response = $client->translations('export', $data);
 
+        if(!is_null(json_decode($response))) {
+            $this->result = static::UNKNOWN_ERROR;
+            $this->invalidResponse($locale, $file, $response);
+            return false;
+        }
+
         $filePath = $this->translationsPath() . DIRECTORY_SEPARATOR . $locale . DIRECTORY_SEPARATOR . $file;
 
         return file_put_contents($filePath, $response);
+    }
+
+    public function invalidResponse($locale, $file, $response)
+    {
+        $this->error("Invalid response:");
+        $this->error("  File:      {$file}");
+        $this->error("  Locale:    {$locale}");
+        $this->error("  Response:  {$response}");
     }
 
     public function prepareTranslationData($project, $locale, $file)

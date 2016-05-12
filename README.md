@@ -28,6 +28,8 @@ php artisan vendor:publish --provider="Ageras\LaravelOneSky\ServiceProvider"
 
 Change the newly published `onesky.php` file so that it matches your project.
 
+Next, add `ONESKY_API_KEY` and `ONESKY_SECRET` to your `.env` file.
+
 When you are ready to translate your language files, use this simple artisan command to upload them to your OneSky account:
 ```
 php artisan onesky:push
