@@ -4,16 +4,15 @@ namespace spec\Ageras\LaravelOneSky\Commands;
 
 use Ageras\LaravelOneSky\Commands\Push;
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 
 class PushSpec extends ObjectBehavior
 {
-    function it_is_initializable()
+    public function it_is_initializable()
     {
         $this->shouldHaveType(Push::class);
     }
 
-    function it_prepares_the_upload_data()
+    public function it_prepares_the_upload_data()
     {
         $this->prepareUploadData(1337, 'en', [
             '/path/to/resources/lang/en/mail.php',
@@ -26,15 +25,15 @@ class PushSpec extends ObjectBehavior
         ]);
     }
 
-    function it_scans_the_path_for_files()
+    public function it_scans_the_path_for_files()
     {
-        $this->scanDir(__DIR__ . '/../../src')->shouldReturn([
+        $this->scanDir(__DIR__.'/../../src')->shouldReturn([
             'Commands',
             'Exceptions',
             'ServiceProvider.php',
         ]);
 
-        $this->scanDir(__DIR__ . '/../../src', 1)->shouldReturn([
+        $this->scanDir(__DIR__.'/../../src', 1)->shouldReturn([
             'Commands',
             'Exceptions',
         ]);

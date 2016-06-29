@@ -9,7 +9,7 @@ use Symfony\Component\Console\Output\NullOutput;
 
 class PullCommandTest extends TestCase
 {
-    protected $testFilePath = __DIR__ . '/stubs/lang/da/test.php';
+    protected $testFilePath = __DIR__.'/stubs/lang/da/test.php';
 
     public function tearDown()
     {
@@ -86,7 +86,7 @@ class PullCommandTest extends TestCase
         );
 
         $this->assertEquals([], require($this->testFilePath));
-        $this->assertEquals(<<<EOT
+        $this->assertEquals(<<<'EOT'
 Invalid response:
   File:       test.php
   Locale:     da

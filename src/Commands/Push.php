@@ -13,12 +13,12 @@ class Push extends BaseCommand
     public function handle()
     {
         $locale = $this->baseLocale();
-        $translationsPath = $this->translationsPath() . DIRECTORY_SEPARATOR . $locale;
+        $translationsPath = $this->translationsPath().DIRECTORY_SEPARATOR.$locale;
 
         $files = $this->scanDir($translationsPath);
 
         $files = array_map(function ($fileName) use (&$locale, &$translationsPath) {
-            return $translationsPath . DIRECTORY_SEPARATOR . $fileName;
+            return $translationsPath.DIRECTORY_SEPARATOR.$fileName;
         }, $files);
 
         $this->uploadFiles(
@@ -54,7 +54,7 @@ class Push extends BaseCommand
 
         if ($responseStatus !== 201) {
             throw new UnexpectedErrorWhileUploading(
-                'Upload response status: ' . $responseStatus
+                'Upload response status: '.$responseStatus
             );
         }
     }

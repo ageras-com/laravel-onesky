@@ -44,7 +44,7 @@ class ServiceProvider extends IlluminateServiceProvider
 
     public function registerClient()
     {
-        $this->app->bindIf('onesky', function() {
+        $this->app->bindIf('onesky', function () {
             return (new Client())
                 ->setApiKey($this->app['config']['onesky.api_key'])
                 ->setSecret($this->app['config']['onesky.secret']);
@@ -58,7 +58,7 @@ class ServiceProvider extends IlluminateServiceProvider
      */
     protected function loadConfiguration()
     {
-        $configPath = __DIR__ . '/../config/onesky.php';
+        $configPath = __DIR__.'/../config/onesky.php';
 
         $this->publishes([
             $configPath => config_path('onesky.php'),
