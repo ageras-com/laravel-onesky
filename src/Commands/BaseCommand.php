@@ -53,7 +53,7 @@ class BaseCommand extends Command
             $project = $config['default_project_id'];
         }
 
-        if ($project && (string)(int)$project === (string)$project) {
+        if ($project && (string) (int) $project === (string) $project) {
             return $project;
         }
 
@@ -69,7 +69,7 @@ class BaseCommand extends Command
         }
 
         return array_filter($fileNames, function ($fileName) use (&$dir) {
-            return is_dir($dir . DIRECTORY_SEPARATOR . $fileName);
+            return is_dir($dir.DIRECTORY_SEPARATOR.$fileName);
         });
     }
 

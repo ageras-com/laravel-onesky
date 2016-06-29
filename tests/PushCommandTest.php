@@ -5,7 +5,6 @@ namespace Ageras\LaravelOneSky\Tests;
 use Ageras\LaravelOneSky\Commands\Push;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Output\BufferedOutput;
-use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Console\Output\NullOutput;
 
 class PushCommandTest extends TestCase
@@ -48,7 +47,7 @@ class PushCommandTest extends TestCase
             'upload',
             [
                 'project_id'  => '1337',
-                'file'        => __DIR__ . '/stubs/lang/en/test.php',
+                'file'        => __DIR__.'/stubs/lang/en/test.php',
                 'file_format' => 'PHP_SHORT_ARRAY',
                 'locale'      => 'en',
             ],
