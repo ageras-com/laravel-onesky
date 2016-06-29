@@ -5,7 +5,6 @@ namespace Ageras\LaravelOneSky\Tests;
 use Ageras\LaravelOneSky\Commands\Push;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Output\BufferedOutput;
-use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Console\Output\NullOutput;
 
 class PushCommandTest extends TestCase
