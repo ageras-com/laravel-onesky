@@ -25,7 +25,7 @@ class Pull extends BaseCommand
             $files
         );
 
-        switch($this->result) {
+        switch ($this->result) {
             case static::SUCCESS:
                 $this->info('Translations were downloaded successfully!');
                 break;
@@ -36,8 +36,8 @@ class Pull extends BaseCommand
 
     public function downloadTranslations($client, $project, $locales, $files)
     {
-        foreach ((array)$locales as $locale) {
-            foreach ((array)$files as $file) {
+        foreach ((array) $locales as $locale) {
+            foreach ((array) $files as $file) {
                 $this->downloadTranslation($client, $project, $locale, $file);
             }
         }
@@ -49,9 +49,10 @@ class Pull extends BaseCommand
 
         $response = $client->translations('export', $data);
 
-        if(!is_null(json_decode($response))) {
+        if (! is_null(json_decode($response))) {
             $this->result = static::UNKNOWN_ERROR;
             $this->invalidResponse($locale, $file, $response);
+
             return false;
         }
 
@@ -62,7 +63,7 @@ class Pull extends BaseCommand
 
     public function invalidResponse($locale, $file, $response)
     {
-        $this->error("Invalid response:");
+        $this->error('Invalid response:');
         $this->error("  File:       {$file}");
         $this->error("  Locale:     {$locale}");
         $this->error("  Response:   {$response}");

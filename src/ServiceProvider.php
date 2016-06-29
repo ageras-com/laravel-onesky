@@ -44,7 +44,7 @@ class ServiceProvider extends IlluminateServiceProvider
 
     public function registerClient()
     {
-        $this->app->bindIf('onesky', function() {
+        $this->app->bindIf('onesky', function () {
             return (new Client())
                 ->setApiKey($this->app['config']['onesky.api_key'])
                 ->setSecret($this->app['config']['onesky.secret']);
