@@ -2,7 +2,6 @@
 [![Latest Stable Version](https://poser.pugx.org/ageras/laravel-onesky/v/stable)](https://packagist.org/packages/ageras/laravel-onesky)
 [![Total Downloads](https://poser.pugx.org/ageras/laravel-onesky/downloads)](https://packagist.org/packages/ageras/laravel-onesky)
 [![Latest Unstable Version](https://poser.pugx.org/ageras/laravel-onesky/v/unstable)](https://packagist.org/packages/ageras/laravel-onesky)
-[![License](https://poser.pugx.org/ageras/laravel-onesky/license)](https://packagist.org/packages/ageras/laravel-onesky)
 [![Monthly Downloads](https://poser.pugx.org/ageras/laravel-onesky/d/monthly)](https://packagist.org/packages/ageras/laravel-onesky)
 
 ## Description
