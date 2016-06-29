@@ -49,11 +49,11 @@ class BaseCommand extends Command
         $config = $this->config();
         $project = $this->option('project');
 
-        if (!$project && isset($config['default_project_id'])) {
+        if (! $project && isset($config['default_project_id'])) {
             $project = $config['default_project_id'];
         }
 
-        if ($project && (string)(int)$project === (string)$project) {
+        if ($project && (string) (int) $project === (string) $project) {
             return $project;
         }
 
@@ -64,7 +64,7 @@ class BaseCommand extends Command
     {
         $fileNames = array_values(array_diff(scandir($dir), ['..', '.']));
 
-        if (!$directoriesOnly) {
+        if (! $directoriesOnly) {
             return $fileNames;
         }
 

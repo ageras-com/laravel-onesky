@@ -10,12 +10,12 @@ class TestCase extends \Orchestra\Testbench\TestCase
 {
     protected function getEnvironmentSetUp($app)
     {
-        (new Loader(__DIR__.'/../.env'))->load();
-        $app->singleton('onesky', function() {
+        (new Loader(__DIR__ . '/../.env'))->load();
+        $app->singleton('onesky', function () {
             return new Client();
         });
 
-        $onesky = require(__DIR__ . '/../config/onesky.php');
+        $onesky = require __DIR__ . '/../config/onesky.php';
         $onesky['translations_path'] = __DIR__ . '/stubs/lang';
         $app['config']['onesky'] = $onesky;
 
