@@ -86,7 +86,7 @@ class PullCommandTest extends TestCase
         );
 
         $this->assertEquals([], require($this->testFilePath));
-        $this->assertEquals(<<<EOT
+        $this->assertEquals(<<<'EOT'
 Invalid response:
   File:       test.php
   Locale:     da
