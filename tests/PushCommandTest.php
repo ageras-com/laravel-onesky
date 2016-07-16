@@ -18,6 +18,7 @@ class PushCommandTest extends TestCase
             (new Dotenv($baseDir))->load();
         }
     }
+
     /**
      * @expectedException \Ageras\LaravelOneSky\Exceptions\NumberExpected
      */
