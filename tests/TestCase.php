@@ -4,13 +4,22 @@ namespace Ageras\LaravelOneSky\Tests;
 
 use Ageras\LaravelOneSky\ServiceProvider;
 use Ageras\LaravelOneSky\Tests\Support\Client;
+use Dotenv\Dotenv;
 use Dotenv\Loader;
 
 class TestCase extends \Orchestra\Testbench\TestCase
 {
+    public function setUp()
+    {
+        parent::setUp();
+        $baseDir = dirname(dirname(__FILE__));
+        if (is_readable($baseDir . '/.env')) {
+            (new Dotenv($baseDir))->load();
+        }
+    }
+
     protected function getEnvironmentSetUp($app)
     {
-        (new Loader(__DIR__ . '/../.env'))->load();
         $app->singleton('onesky', function () {
             return new Client();
         });
