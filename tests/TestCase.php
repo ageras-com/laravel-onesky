@@ -5,7 +5,6 @@ namespace Ageras\LaravelOneSky\Tests;
 use Ageras\LaravelOneSky\ServiceProvider;
 use Ageras\LaravelOneSky\Tests\Support\Client;
 use Dotenv\Dotenv;
-use Dotenv\Loader;
 
 class TestCase extends \Orchestra\Testbench\TestCase
 {
