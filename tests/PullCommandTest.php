@@ -3,6 +3,7 @@
 namespace Ageras\LaravelOneSky\Tests;
 
 use Ageras\LaravelOneSky\Commands\Pull;
+use Dotenv\Dotenv;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Output\BufferedOutput;
 use Symfony\Component\Console\Output\NullOutput;
@@ -10,6 +11,15 @@ use Symfony\Component\Console\Output\NullOutput;
 class PullCommandTest extends TestCase
 {
     protected $testFilePath = __DIR__ . '/stubs/lang/da/test.php';
+
+    public function setUp()
+    {
+        parent::setUp();
+        $baseDir = dirname(dirname(__FILE__));
+        if (is_readable($baseDir . '/.env')) {
+            (new Dotenv($baseDir))->load();
+        }
+    }
 
     public function tearDown()
     {

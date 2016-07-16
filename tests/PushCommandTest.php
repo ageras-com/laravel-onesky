@@ -3,12 +3,21 @@
 namespace Ageras\LaravelOneSky\Tests;
 
 use Ageras\LaravelOneSky\Commands\Push;
+use Dotenv\Dotenv;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Output\BufferedOutput;
 use Symfony\Component\Console\Output\NullOutput;
 
 class PushCommandTest extends TestCase
 {
+    public function setUp()
+    {
+        parent::setUp();
+        $baseDir = dirname(dirname(__FILE__));
+        if (is_readable($baseDir . '/.env')) {
+            (new Dotenv($baseDir))->load();
+        }
+    }
     /**
      * @expectedException \Ageras\LaravelOneSky\Exceptions\NumberExpected
      */
