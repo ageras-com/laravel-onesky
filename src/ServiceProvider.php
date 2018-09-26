@@ -14,13 +14,14 @@ class ServiceProvider extends IlluminateServiceProvider
      */
     public function register()
     {
+		$this->loadConfiguration();
         $this->registerCommands();
         $this->registerClient();
     }
 
     public function boot()
     {
-        $this->loadConfiguration();
+        
     }
 
     public function registerCommands()
