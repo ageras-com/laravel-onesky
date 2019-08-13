@@ -3,6 +3,7 @@
 namespace Ageras\LaravelOneSky\Tests;
 
 use Ageras\LaravelOneSky\Commands\Pull;
+use Ageras\LaravelOneSky\Exceptions\NumberExpected;
 use Dotenv\Dotenv;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Output\BufferedOutput;
@@ -12,7 +13,7 @@ class PullCommandTest extends TestCase
 {
     protected $testFilePath = __DIR__ . '/stubs/lang/da/test.php';
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $baseDir = dirname(dirname(__FILE__));
@@ -21,17 +22,16 @@ class PullCommandTest extends TestCase
         }
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         parent::tearDown();
         file_put_contents($this->testFilePath, '<?php return [];');
     }
 
-    /**
-     * @expectedException \Ageras\LaravelOneSky\Exceptions\NumberExpected
-     */
     public function test_that_exception_is_thrown_when_no_project_id_is_found()
     {
+        $this->expectException(NumberExpected::class);
+
         $pull = new Pull();
         $pull->setLaravel($this->app);
 

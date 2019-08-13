@@ -10,9 +10,9 @@
     ],
     "require": {
         "onesky/api-library-php5": "^1.0",
-        "illuminate/support": "^5.2",
-        "illuminate/console": "^5.2",
-        "vlucas/phpdotenv": "^2.2"
+        "illuminate/support": "^5.8",
+        "illuminate/console": "^5.8",
+        "vlucas/phpdotenv": "^3.4"
     },
     "autoload": {
         "psr-4": {
@@ -21,8 +21,8 @@
         }
     },
     "require-dev": {
-        "phpspec/phpspec": "^2.5",
-        "phpunit/phpunit": "^5.3",
-        "orchestra/testbench": "^3.1"
+        "phpspec/phpspec": "^5.1",
+        "phpunit/phpunit": "^8.3",
+        "orchestra/testbench": "^3.8"
     }
 }

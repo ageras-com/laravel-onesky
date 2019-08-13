@@ -3,6 +3,7 @@
 namespace Ageras\LaravelOneSky\Tests;
 
 use Ageras\LaravelOneSky\Commands\Push;
+use Ageras\LaravelOneSky\Exceptions\NumberExpected;
 use Dotenv\Dotenv;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Output\BufferedOutput;
@@ -10,7 +11,7 @@ use Symfony\Component\Console\Output\NullOutput;
 
 class PushCommandTest extends TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $baseDir = dirname(dirname(__FILE__));
@@ -19,11 +20,10 @@ class PushCommandTest extends TestCase
         }
     }
 
-    /**
-     * @expectedException \Ageras\LaravelOneSky\Exceptions\NumberExpected
-     */
     public function test_that_exception_is_thrown_when_no_project_id_is_found()
     {
+        $this->expectException(NumberExpected::class);
+
         $push = new Push();
         $push->setLaravel($this->app);
 
