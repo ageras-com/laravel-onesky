@@ -20,14 +20,6 @@ composer require ageras/laravel-onesky
 
 ## Usage
 
-Add the service provider to the `app.php` file:
-```
-'providers' => [
-    ...
-    Ageras\LaravelOneSky\ServiceProvider::class,
-]
-```
-
 Copy the package config to your local config with the publish command:
 ```
 php artisan vendor:publish --provider="Ageras\LaravelOneSky\ServiceProvider"
